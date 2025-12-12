@@ -21,7 +21,7 @@ const App: React.FC = () => {
   };
 
   const handleReset = () => {
-    if(confirm("Deseja carregar um novo arquivo? Os dados atuais serão perdidos.")) {
+    if (confirm("Deseja carregar um novo arquivo? Os dados atuais serão perdidos.")) {
       setData(null);
     }
   }
@@ -29,7 +29,7 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* Header */}
-      <header className="bg-green-700 text-white shadow-lg sticky top-0 z-50 print:hidden">
+      <header className="bg-blue-700 text-white shadow-lg sticky top-0 z-50 print:hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <div className="bg-white p-2 rounded-full">
@@ -37,12 +37,12 @@ const App: React.FC = () => {
             </div>
             <div>
               <h1 className="text-xl font-bold leading-none">SIS-SELEÇÃO EEEP 2026</h1>
-              <p className="text-xs text-green-100 mt-1 opacity-90">EEEP Maria Célia Pinheiro Falcão • Edital Nº 003/2025</p>
+              <p className="text-xs text-green-100 mt-1 opacity-90">EEEP Professor Gustavo Augusto Lima • Edital Nº 003/2025</p>
             </div>
           </div>
           {data && (
-             <div className="flex items-center space-x-3">
-               <button 
+            <div className="flex items-center space-x-3">
+              <button
                 onClick={() => generateXLS(data)}
                 className="flex items-center space-x-2 bg-green-600 hover:bg-green-500 px-3 py-2 rounded-md transition-colors text-sm font-medium border border-green-500"
                 title="Baixar planilha Excel"
@@ -50,7 +50,7 @@ const App: React.FC = () => {
                 <FileSpreadsheet className="w-4 h-4" />
                 <span className="hidden sm:inline">Excel</span>
               </button>
-              <button 
+              <button
                 onClick={() => generateDOC(data)}
                 className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-500 px-3 py-2 rounded-md transition-colors text-sm font-medium border border-blue-500"
                 title="Baixar em Word"
@@ -58,7 +58,7 @@ const App: React.FC = () => {
                 <FileText className="w-4 h-4" />
                 <span className="hidden sm:inline">Word</span>
               </button>
-              <button 
+              <button
                 onClick={() => generatePDF(data)}
                 className="flex items-center space-x-2 bg-white text-green-800 hover:bg-gray-100 px-3 py-2 rounded-md transition-colors text-sm font-medium shadow-sm"
                 title="Baixar lista em PDF"
@@ -73,7 +73,7 @@ const App: React.FC = () => {
               >
                 <RefreshCw className="w-5 h-5" />
               </button>
-             </div>
+            </div>
           )}
         </div>
       </header>
@@ -88,7 +88,7 @@ const App: React.FC = () => {
                 <p className="text-gray-600 mt-2">Carregue a planilha CSV exportada do Google Forms para gerar a classificação oficial conforme o Edital.</p>
               </div>
               <FileUpload onFileUpload={handleFileUpload} />
-              
+
               <div className="mt-8 border-t pt-6">
                 <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">Regras Aplicadas</h3>
                 <ul className="space-y-2 text-sm text-gray-600">
@@ -114,15 +114,15 @@ const App: React.FC = () => {
           </div>
         ) : (
           <div className="animate-fade-in">
-             <div className="mb-6 bg-white p-4 rounded-lg shadow-sm border border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-4 print:hidden">
-                <div className="flex items-center space-x-2 text-gray-700">
-                  <span className="font-bold text-lg text-green-700">{data.totalProcessed}</span>
-                  <span className="font-medium text-sm text-gray-500">candidatos processados no total</span>
-                </div>
-                <div className="text-sm text-gray-400 italic">
-                  * Utilize os botões no topo para baixar o resultado final.
-                </div>
-             </div>
+            <div className="mb-6 bg-white p-4 rounded-lg shadow-sm border border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-4 print:hidden">
+              <div className="flex items-center space-x-2 text-gray-700">
+                <span className="font-bold text-lg text-green-700">{data.totalProcessed}</span>
+                <span className="font-medium text-sm text-gray-500">candidatos processados no total</span>
+              </div>
+              <div className="text-sm text-gray-400 italic">
+                * Utilize os botões no topo para baixar o resultado final.
+              </div>
+            </div>
 
             {/* Course Tabs */}
             <div className="mb-8 border-b border-gray-200 print:hidden overflow-x-auto">
@@ -146,8 +146,8 @@ const App: React.FC = () => {
 
             {/* Print Header (Visible only on print) */}
             <div className="hidden print:block mb-8 text-center border-b pb-4">
-               <h2 className="text-2xl font-bold">RESULTADO PRELIMINAR - SELEÇÃO EEEP 2026</h2>
-               <h3 className="text-xl mt-2">{activeTab}</h3>
+              <h2 className="text-2xl font-bold">RESULTADO PRELIMINAR - SELEÇÃO EEEP 2026</h2>
+              <h3 className="text-xl mt-2">{activeTab}</h3>
             </div>
 
             {/* Active Course View */}
@@ -163,7 +163,7 @@ const App: React.FC = () => {
       {/* Footer */}
       <footer className="bg-white border-t mt-12 py-6 print:hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm text-gray-500">
-          <p>© 2025 EEEP Professora Maria Célia Pinheiro Falcão. Sistema desenvolvido para o Processo Seletivo 2026.</p>
+          <p>© 2025 EEEP Professor Gustavo Augusto Lima. Sistema desenvolvido para o Processo Seletivo 2026.</p>
         </div>
       </footer>
     </div>

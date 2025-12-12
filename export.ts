@@ -32,7 +32,7 @@ const getGroupsForCourse = (result: CourseResult): StudentGroup[] => [
   { title: "CLASSIFICADOS - Ampla Concorrência - Pública", students: result.publicBroad },
   { title: "CLASSIFICADOS - Cota Regional (Centro) - Privada", students: result.privateLocal },
   { title: "CLASSIFICADOS - Ampla Concorrência - Privada", students: result.privateBroad },
-  
+
   // Waiting
   { title: "CLASSIFICÁVEIS - Cota PCD", students: result.waitingPCD, isWaiting: true },
   { title: "CLASSIFICÁVEIS - Cota Regional (Centro) - Pública", students: result.waitingPublicLocal, isWaiting: true },
@@ -43,7 +43,7 @@ const getGroupsForCourse = (result: CourseResult): StudentGroup[] => [
 
 export const generatePDF = (data: ProcessingSummary) => {
   const doc = new jsPDF();
-  
+
   // Title
   doc.setFontSize(16);
   doc.text("RESULTADO PRELIMINAR - SELEÇÃO EEEP 2026", 14, 15);
@@ -60,7 +60,8 @@ export const generatePDF = (data: ProcessingSummary) => {
     }
 
     // Course Header
-    doc.setFillColor(22, 163, 74); // Green-600
+    doc.setFillColor(13, 71, 217); // Green-600
+    // doc.setFillColor(22, 163, 74); // Green-600
     doc.rect(14, currentY, 182, 8, 'F');
     doc.setTextColor(255, 255, 255);
     doc.setFontSize(12);
@@ -75,13 +76,13 @@ export const generatePDF = (data: ProcessingSummary) => {
       doc.setTextColor(0, 0, 0);
       doc.setFontSize(10);
       doc.setFont("helvetica", "bold");
-      
+
       // Check space
       if (currentY > 270) {
         doc.addPage();
         currentY = 20;
       }
-      
+
       doc.text(`${courseResult.course} - ${group.title}`, 14, currentY);
       currentY += 2;
 
@@ -94,7 +95,7 @@ export const generatePDF = (data: ProcessingSummary) => {
         doc.setFont("helvetica", "normal"); // Reset
       } else {
         const tableData = group.students.map((s) => [
-          s.rank, 
+          s.rank,
           s.registrationNumber,
           s.name,
           formatScore(s.finalScore),
@@ -121,12 +122,12 @@ export const generatePDF = (data: ProcessingSummary) => {
             currentY = data.cursor.y + 10;
           }
         });
-        
+
         // Update Y after table
         currentY = (doc as any).lastAutoTable.finalY + 10;
       }
     });
-    
+
     currentY += 5; // Extra gap between courses
   });
 
@@ -143,14 +144,14 @@ export const generateXLS = (data: ProcessingSummary) => {
     groups.forEach(group => {
       // Add a header row for the category
       rows.push({}); // spacer
-      rows.push({ "Nome Completo": `>>> ${group.title.toUpperCase()}` }); 
+      rows.push({ "Nome Completo": `>>> ${group.title.toUpperCase()}` });
 
       if (group.students.length === 0) {
-         rows.push({
-           "Curso": courseResult.course,
-           "Lista": group.title,
-           "Nome Completo": "Não há candidatos inscritos nesta modalidade."
-         });
+        rows.push({
+          "Curso": courseResult.course,
+          "Lista": group.title,
+          "Nome Completo": "Não há candidatos inscritos nesta modalidade."
+        });
       } else {
         // Add students
         group.students.forEach((s) => {
@@ -170,7 +171,7 @@ export const generateXLS = (data: ProcessingSummary) => {
     });
 
     const ws = XLSX.utils.json_to_sheet(rows);
-    
+
     // Set column widths
     const wscols = [
       { wch: 25 }, // Curso
@@ -224,7 +225,7 @@ export const generateDOC = (data: ProcessingSummary) => {
 
     groups.forEach(g => {
       html += `<div class='group-header'>${res.course} - ${g.title}</div>`;
-      
+
       html += `
         <table>
           <thead>
